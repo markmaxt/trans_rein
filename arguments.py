@@ -33,3 +33,12 @@ def get_args():
                       help='random seed (default: 1)') 
   parser.add_argument('--num-env-steps', type=int, default=10e6, 
                       help='number of environment steps to train (default: 10e6)') 
+  parser.add_argument('--log-dir', default='/tmp/gym/',
+                        help='directory to save agent logs (default: /tmp/gym)')
+  parser.add_argument('--use-linear-lr-decay', action='store_true', default=False,
+                        help='use a linear schedule on the learning rate')
+  args = parser.parse_args()
+  
+  args.cuda = not args.no_cuda and torch.cuda.is_available()
+  
+  return args
